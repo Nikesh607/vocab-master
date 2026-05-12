@@ -1,210 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vocab Master</title>
-    <style>
-        :root {
-            --primary: #4F46E5;
-            --primary-hover: #4338CA;
-            --bg: #F3F4F6;
-            --card-bg: #FFFFFF;
-            --text: #1F2937;
-            --text-light: #6B7280;
-            --correct: #10B981;
-            --wrong: #EF4444;
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .app-container {
-            background: var(--card-bg);
-            width: 100%;
-            max-width: 450px;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            box-sizing: border-box;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        h1,
-        h2 {
-            text-align: center;
-            margin-top: 0;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #D1D5DB;
-            font-size: 16px;
-        }
-
-        .btn-primary {
-            width: 100%;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
-
-        /* Quiz Screen Styles */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            font-weight: 600;
-            color: var(--text-light);
-        }
-
-        .question-card {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 20px 0;
-            border-bottom: 2px dashed #E5E7EB;
-        }
-
-        .prompt {
-            font-size: 14px;
-            color: var(--primary);
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .target-word {
-            font-size: 32px;
-            font-weight: 800;
-            margin: 0;
-        }
-
-        .options-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .option-wrapper {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .option-btn {
-            background-color: white;
-            border: 2px solid #E5E7EB;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 500;
-            text-align: left;
-            width: 100%;
-        }
-
-        .option-btn:hover:not(:disabled) {
-            border-color: var(--primary);
-            background-color: #EEF2FF;
-        }
-
-        .option-btn:disabled {
-            cursor: default;
-        }
-
-        .option-btn.correct {
-            background-color: #D1FAE5;
-            border-color: var(--correct);
-            color: #065F46;
-        }
-
-        .option-btn.wrong {
-            background-color: #FEE2E2;
-            border-color: var(--wrong);
-            color: #991B1B;
-        }
-
-        /* New Hint Styles */
-        .hint-text {
-            font-size: 13px;
-            color: #4B5563;
-            background: #F3F4F6;
-            padding: 8px 12px;
-            border-radius: 0 0 8px 8px;
-            margin-top: -4px;
-            border: 1px solid #E5E7EB;
-            border-top: none;
-        }
-
-        .next-btn-container {
-            margin-top: 20px;
-        }
-
-        /* Results Styles */
-        .review-list {
-            max-height: 300px;
-            overflow-y: auto;
-            margin: 20px 0;
-        }
-
-        .review-item {
-            background: #F9FAFB;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            border-left: 4px solid var(--wrong);
-        }
-
-        .review-detail {
-            font-size: 14px;
-            color: var(--text-light);
-            margin-top: 4px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocab Master</title>
+<style>
+    :root {
+        --primary: #4F46E5;
+        --primary-hover: #4338CA;
+        --bg: #F3F4F6;
+        --card-bg: #FFFFFF;
+        --text: #1F2937;
+        --text-light: #6B7280;
+        --correct: #10B981;
+        --wrong: #EF4444;
+    }
+    body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .app-container {
+        background: var(--card-bg);
+        width: 100%;
+        max-width: 480px;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        box-sizing: border-box;
+        max-height: 95vh;
+        overflow-y: auto;
+    }
+    .hidden { display: none !important; }
+    h1, h2 { text-align: center; margin-top: 0; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; }
+    select, input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #D1D5DB; font-size: 16px; box-sizing: border-box; }
+    
+    .btn-primary {
+        width: 100%;
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 10px;
+    }
+    .btn-primary:hover { background-color: var(--primary-hover); }
+    
+    .header { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 600; color: var(--text-light); }
+    .question-card { text-align: center; margin-bottom: 20px; padding: 20px 0; border-bottom: 2px dashed #E5E7EB; }
+    .prompt { font-size: 14px; color: var(--primary); font-weight: bold; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .target-word { font-size: 32px; font-weight: 800; margin: 0; }
+    .options-grid { display: flex; flex-direction: column; gap: 12px; }
+    
+    .option-wrapper { display: flex; flex-direction: column; }
+    .option-btn {
+        background-color: white; border: 2px solid #E5E7EB; padding: 16px;
+        border-radius: 12px; font-size: 16px; cursor: pointer; transition: all 0.2s;
+        font-weight: 500; text-align: left; width: 100%;
+    }
+    .option-btn:hover:not(:disabled) { border-color: var(--primary); background-color: #EEF2FF; }
+    .option-btn:disabled { cursor: default; }
+    .option-btn.correct { background-color: #D1FAE5; border-color: var(--correct); color: #065F46; }
+    .option-btn.wrong { background-color: #FEE2E2; border-color: var(--wrong); color: #991B1B; }
+    
+    .hint-text {
+        font-size: 13px; color: #4B5563; background: #F3F4F6; padding: 10px 12px;
+        border-radius: 0 0 8px 8px; margin-top: -4px; border: 1px solid #E5E7EB; border-top: none;
+    }
+    .next-btn-container { margin-top: 20px; }
+    .review-list { max-height: 350px; overflow-y: auto; margin: 20px 0; }
+    .review-item { background: #F9FAFB; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid var(--wrong); }
+    .review-detail { font-size: 14px; color: var(--text-light); margin-top: 4px; }
+</style>
 </head>
-
 <body>
 
-    <div class="app-container">
-        <!-- MENU -->
-        <div id="menu-screen">
+<div class="app-container">
+    <div id="menu-screen">
         <h1>Vocab Master</h1>
         
         <div class="form-group">
@@ -227,198 +112,195 @@
         
         <div class="form-group" style="display: flex; gap: 10px;">
             <div style="flex: 1;">
-                <label>Start Word #:</label>
-                <input type="number" id="start-range" min="1" max="99" value="1" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #D1D5DB; box-sizing: border-box; font-size: 16px;">
+                <label>Start Word # (1-99):</label>
+                <input type="number" id="start-range" min="1" max="99" value="1">
             </div>
             <div style="flex: 1;">
-                <label>End Word #:</label>
-                <input type="number" id="end-range" min="1" max="99" value="99" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #D1D5DB; box-sizing: border-box; font-size: 16px;">
+                <label>End Word # (1-99):</label>
+                <input type="number" id="end-range" min="1" max="99" value="10">
             </div>
         </div>
 
         <div class="form-group">
-            <label>Number of Questions:</label>
+            <label>Total Questions:</label>
             <select id="count-select">
                 <option value="10">10 Questions</option>
-                <option value="15" selected>15 Questions</option>
+                <option value="15">15 Questions</option>
                 <option value="25">25 Questions</option>
-                <option value="35">35 Questions</option>
                 <option value="45">45 Questions</option>
-                <option value="all">All in Range</option>
+                <option value="all" selected>All in Range (Perfect Math)</option>
             </select>
         </div>
 
         <button class="btn-primary" onclick="startQuiz()">Start Quiz</button>
     </div>
 
-        <!-- QUIZ -->
-        <div id="quiz-screen" class="hidden">
-            <div class="header">
-                <span id="progress-text"></span>
-                <span id="score-text"></span>
-            </div>
-            <div class="question-card">
-                <div class="prompt" id="prompt-text"></div>
-                <h2 class="target-word" id="word-display"></h2>
-            </div>
-            <div class="options-grid" id="options-container"></div>
-            <div class="next-btn-container hidden" id="next-btn-container">
-                <button class="btn-primary" onclick="advanceQuiz()">Next Question</button>
-            </div>
+    <div id="quiz-screen" class="hidden">
+        <div class="header">
+            <span id="progress-text"></span>
+            <span id="score-text"></span>
         </div>
-
-        <!-- RESULTS -->
-        <div id="results-screen" class="hidden">
-            <h1>Quiz Complete!</h1>
-            <h2 id="final-score"></h2>
-            <div id="review-container" class="review-list"></div>
-            <button class="btn-primary" onclick="location.reload()">Play Again</button>
+        <div class="question-card">
+            <div class="prompt" id="prompt-text"></div>
+            <h2 class="target-word" id="word-display"></h2>
+        </div>
+        <div class="options-grid" id="options-container"></div>
+        <div class="next-btn-container hidden" id="next-btn-container">
+            <button class="btn-primary" onclick="advanceQuiz()">Next Question</button>
         </div>
     </div>
 
-    <script>
-        // DATA
-        const vocabData = [
-            { word: 'Slipshod', synonyms: ['heedless', 'remiss', 'lax', 'impetuous'], antonyms: ['scrupulous', 'solicitous'] },
-            { word: 'Abstruse', synonyms: ['elusive', 'esoteric', 'recondite', 'implicit', 'cryptic'], antonyms: ['pellucid', 'perspicuous', 'conspicuous', 'explicit', 'limpid'] },
-            { word: 'Ameliorate', synonyms: ['amend', 'revamp', 'rectify', 'overhaul'], antonyms: ['aggravate', 'exacerbate'] },
-            { word: 'Exiguous', synonyms: ['dearth', 'scanty', 'sparse', 'paltry', 'deprived', 'meagre'], antonyms: ['galore', 'plethora', 'surfeit', 'profuse', 'myriad', 'opulent', 'copious'] },
-            { word: 'Novice', synonyms: ['dabbler', 'tyro', 'proselyte', 'maladroit', 'inept'], antonyms: ['savant', 'seasoned', 'acumen', 'maestro', 'virtuoso', 'adept', 'dexterous'] },
-            { word: 'Apogee', synonyms: ['zenith', 'apotheosis', 'acme', 'culmination', 'crest'], antonyms: ['nadir', 'plinth'] },
-            { word: 'Clandestine', synonyms: ['surreptitious', 'furtive', 'ulterior', 'veiled', 'devious', 'covert'], antonyms: ['forthright', 'upright', 'candid', 'overt', 'unveil'] },
-            { word: 'Voluble', synonyms: ['gabby', 'garrulous', 'verbose'], antonyms: ['reticent', 'taciturn', 'laconic', 'concise', 'terse', 'curt'] },
-            { word: 'Amass', synonyms: ['garner', 'assimilate', 'congregate'], antonyms: ['dissipate', 'disseminate', 'squander', 'fritter', 'misspend'] },
-            { word: 'Audacious', synonyms: ['valiant', 'gallant', 'dauntless', 'intrepid', 'temerity'], antonyms: ['mousy', 'craven', 'coy', 'recreant', 'skittish'] },
-            { word: 'Bliss', synonyms: ['glee', 'mirth', 'elation', 'rapture', 'ecstasy', 'euphoria', 'beatitude', 'exaltation'], antonyms: ['doleful', 'bleak', 'forlorn', 'morose', 'crestfallen', 'dolorous', 'melancholy', 'sombre', 'glum', 'sullen', 'rue', 'murky', 'weepy', 'plaintive'] },
-            { word: 'Assuage', synonyms: ['lull', 'alleviate', 'allay', 'conciliate', 'palliate', 'propitiate'], antonyms: ['incite', 'instigate', 'infuriate', 'foment', 'exasperate', 'goad', 'embroil', 'exhort'] },
-            { word: 'Turmoil', synonyms: ['agitation', 'tumultuous', 'mayhem', 'bedlam', 'pandemonium', 'shambles', 'perturbation'], antonyms: ['serenity'] },
-            { word: 'Plaudit', synonyms: ['acclamation', 'approbation', 'citation', 'encomium', 'eulogy', 'accolades', 'panegyrize'], antonyms: ['ignominy', 'censure', 'tirade', 'jeremiad', 'calumny', 'rant', 'pillory', 'opprobrium', 'obloquy', 'mortification', 'lambast', 'invective', 'libel', 'slander'] },
-            { word: 'Tenacious', synonyms: ['obstinate', 'obdurate', 'steadfast', 'dogged', 'dogmatic', 'resolute', 'intransigent', 'mulish', 'inexorable', 'wilful', 'refractory', 'wayward', 'ossified', 'recalcitrant', 'pervert', 'unyielding'], antonyms: ['acquiesce', 'docile', 'subservient', 'servile', 'pliable', 'supple', 'complaisant', 'amenable', 'capitulate'] },
-            { word: 'Perjure', synonyms: ['beguile', 'delude', 'hoodwink', 'swindle', 'take in', 'dupe', 'prevaricate', 'ruse', 'mendacious'], antonyms: ['assert'] },
-            { word: 'Testy', synonyms: ['petulant', 'contentious', 'captious', 'fractious', 'truculent'], antonyms: ['cordial', 'genial', 'affable', 'jovial'] },
-            { word: 'Mercurial', synonyms: ['capricious', 'erratic', 'fickle', 'flighty'], antonyms: [] },
-            { word: 'Outlandish', synonyms: ['eerie', 'aberrant', 'outre', 'queer', 'quaint', 'anomalous'], antonyms: [] },
-            { word: 'Nugatory', synonyms: ['futile', 'parched', 'desolate'], antonyms: ['prolific', 'arable'] },
-            { word: 'Augment', synonyms: ['aggrandize', 'expedite', 'parlay', 'soar', 'crescendo', 'burgeon', 'proliferate'], antonyms: ['abbreviate', 'dwindle', 'wane', 'recede', 'ebb'] },
-            { word: 'Erudite', synonyms: ['highbrow', 'cerebral'], antonyms: ['benighted'] },
-            { word: 'Beneficial', synonyms: ['salubrious', 'salutary', 'propitious', 'innocuous', 'expedient', 'auspicious'], antonyms: ['perilous', 'parlous', 'precarious', 'inimical', 'deleterious'] },
-            { word: 'Obstreperous', synonyms: ['vociferous', 'clamorous', 'unruly', 'raucous'], antonyms: ['reposeful'] },
-            { word: 'Embargo', synonyms: ['impediment', 'deterrents', 'proscription', 'stumbling', 'interdict', 'occlude', 'stymie', 'encumbrance', 'thwart'], antonyms: [] },
-            { word: 'Bumptious', synonyms: ['haughty', 'fustian', 'supercilious', 'vanity', 'imperious', 'cavalier', 'snobbish', 'chesty', 'patronizing'], antonyms: ['benign'] },
-            { word: 'Bumpkin', synonyms: ['yokel', 'arcade', 'boorish', 'clumsy', 'bucolic', 'loutish', 'uncouth'], antonyms: ['debonair', 'genteel'] },
-            { word: 'Scrimmage', synonyms: ['fracas', 'squabble', 'skirmish', 'strife', 'scuffles', 'vendetta', 'discord'], antonyms: ['concord', 'accord', 'truce', 'congruity'] },
-            { word: 'Virile', synonyms: ['burly', 'plump', 'portly', 'rotund', 'pudgy'], antonyms: ['frail', 'infirm', 'decrepit', 'enervated', 'doddering', 'dilapidated', 'gaunt', 'indisposed', 'bony', 'flimsy', 'flaccid'] },
-            { word: 'Aftermath', synonyms: ['repercussions', 'upshot', 'fallout', 'ramification', 'reverberation', 'corollary'], antonyms: ['advent', 'inception'] },
-            { word: 'Baffled', synonyms: ['confounded', 'muddled', 'perplexed', 'befuddled', 'nonplussed', 'bewildered', 'flustered', 'flummoxed', 'dazed', 'fazed'], antonyms: ['explicate'] },
-            { word: 'Imperative', synonyms: ['requisite', 'exigent', 'incumbent'], antonyms: ['discretionary'] },
-            { word: 'Brace', synonyms: ['bolster', 'buttress', 'beef up', 'prop up', 'consolidate', 'embolden'], antonyms: ['debilitate', 'enervate', 'jade'] },
-            { word: 'Seize', synonyms: ['clasp', 'usurp', 'impound', 'commandeer', 'expropriate', 'sequestrate'], antonyms: ['extricate'] },
-            { word: 'Innate', synonyms: ['ingrained', 'inveterate', 'intrinsic', 'immanent', 'congenital'], antonyms: ['extrinsic'] },
-            { word: 'Onerous', synonyms: ['toilsome', 'cumbersome', 'arduous'], antonyms: ['facile'] },
-            { word: 'Confute', synonyms: ['abjure', 'refute', 'repudiate', 'rebut', 'rebuff', 'gainsay', 'controvert', 'contravene'], antonyms: ['ratify', 'concede', 'espouse', 'corroborate', 'assent'] },
-            { word: 'Beneficent', synonyms: ['munificent', 'magnanimous', 'altruistic', 'bounteous', 'divvy', 'largesse', 'samaritan'], antonyms: ['maleficent', 'misanthropic'] },
-            { word: 'Divvy', synonyms: ['apportion'], antonyms: [] },
-            { word: 'Dapper', synonyms: ['spruce', 'tidy', 'snappy', 'sassy', 'nifty', 'prim', 'kempt', 'immaculate'], antonyms: ['scrubby', 'scruffy', 'shabby', 'slovenly', 'slouchy'] },
-            { word: 'Adversity', synonyms: ['tribulations', 'plight', 'distress', 'predicament', 'affliction', 'cataclysm', 'scourge', 'abject'], antonyms: [] },
-            { word: 'Abomination', synonyms: ['odium', 'pique', 'aversion', 'loathsome', 'detestation', 'repugnance', 'animosity', 'abhorrence', 'disdain', 'anathema', 'rancor', 'aspersion'], antonyms: ['propensity', 'proclivity', 'penchant', 'predilection', 'endearment', 'predisposition'] },
-            { word: 'Indigent', synonyms: ['impoverished', 'penurious', 'impecunious', 'pauper', 'destitute', 'hard up', 'mendicant'], antonyms: ['opulent', 'affluent'] },
-            { word: 'Entreat', synonyms: ['implore', 'beseech', 'importune', 'supplicate', 'solicit', 'adjure', 'scrounge'], antonyms: ['coerce', 'impel', 'remonstrate'] },
-            { word: 'Puritanical', synonyms: ['scrupulous', 'conscientious', 'prudish', 'priggish', 'aboveboard', 'virtuous', 'pristine'], antonyms: ['vicious', 'reprobate'] },
-            { word: 'Rancid', synonyms: ['stale', 'putrid', 'fetid', 'musty'], antonyms: [] },
-            { word: 'Authenticate', synonyms: ['factual', 'veritable'], antonyms: ['fictitious', 'factitious', 'specious', 'ersatz', 'apocryphal', 'bogus', 'fallacy', 'spurious', 'phoney', 'sophistry', 'sham', 'chicanery'] },
-            { word: 'Desultory', synonyms: ['haphazard', 'perfunctory', 'cursory', 'unpremeditated'], antonyms: [] },
-            { word: 'Affectation', synonyms: ['sophistry', 'feign', 'ostentation', 'swanky', 'sham', 'pomp', 'pompous'], antonyms: ['veracity'] },
-            { word: 'Adulation', synonyms: ['obsequiousness', 'cajolery', 'coax', 'sycophancy', 'fawning', 'blandishment', 'wheedle', 'toady', 'inveiglement', 'servility', 'unctuous', 'ingratiating', 'blandiloquent'], antonyms: ['obloquy', 'reproach', 'aspersion', 'vituperation'] },
-            { word: 'Imbecile', synonyms: ['asinine', 'fatuous', 'dunce', 'nincompoop', 'simpleton', 'puerile', 'ignoramus', 'vacuous', 'doltish'], antonyms: ['sapient', 'astute', 'judicious'] },
-            { word: 'Exigency', synonyms: ['contingency'], antonyms: [] },
-            { word: 'Bequeath', synonyms: ['abdicate', 'renounce', 'denounce', 'relinquish', 'shun', 'abjure', 'acquit', 'abnegate'], antonyms: ['entail'] },
-            { word: 'Agile', synonyms: ['brisk', 'alacritous', 'prompt', 'spry', 'expeditiously'], antonyms: ['languid', 'lax', 'indolent', 'torpid'] },
-            { word: 'Quixotic', synonyms: ['chimerical', 'fictitious', 'factitious', 'intangible'], antonyms: ['pragmatic', 'factual', 'empirical', 'plausible', 'tenable', 'tangible', 'viable', 'probable'] },
-            { word: 'Imprudent', synonyms: [], antonyms: ['clairvoyance', 'discerning', 'foresighted'] },
-            { word: 'Impudent', synonyms: ['insolent', 'impertinent', 'cheeky', 'saucy', 'curt', 'abrupt', 'brusque', 'brash'], antonyms: ['benign'] },
-            { word: 'Licentious', synonyms: ['lascivious', 'libertine', 'libidinous', 'wanton', 'profligate', 'dissolute', 'debauched', 'ribald', 'promiscuous', 'reprobate', 'salacious', 'flagrant', 'profane', 'egregious'], antonyms: ['chaste', 'scrupulous', 'pristine'] },
-            { word: 'Aplomb', synonyms: ['equanimity', 'poise', 'phlegmatic', 'sangfroid', 'sanguinity'], antonyms: ['angst', 'consternation', 'overstrung', 'dismay', 'distraught', 'apprehension', 'trepidation', 'dread'] },
-            { word: 'Colossal', synonyms: ['prodigious', 'lofty'], antonyms: ['pygmy', 'wee', 'diminutive', 'petite', 'infinitesimal'] },
-            { word: 'Nonchalant', synonyms: ['apathetic', 'stolid', 'impassive', 'perfunctory', 'insouciant', 'impervious'], antonyms: [] },
-            { word: 'Captivity', synonyms: ['incarceration', 'impoundment', 'internment', 'serfdom'], antonyms: [] },
-            { word: 'Wily', synonyms: ['insidious', 'sly', 'intriguing', 'shrewd', 'knavish'], antonyms: ['bovine'] },
-            { word: 'Advent', synonyms: ['inception', 'genesis', 'commencement', 'budding'], antonyms: ['exodus'] },
-            { word: 'Brevity', synonyms: ['abbreviation', 'pithy', 'succinctness', 'compendium'], antonyms: ['prolix'] },
-            { word: 'Inclement', synonyms: ['stern', 'stringent', 'grim', 'dire', 'austere', 'ascetic'], antonyms: ['frivolous', 'clement'] },
-            { word: 'Immaculate', synonyms: ['prim', 'pristine', 'unsoiled', 'tidy', 'spick and span'], antonyms: ['murky', 'grubby', 'stale', 'sullied', 'besmirched', 'defiled', 'blemished', 'tainted'] },
-            { word: 'Accuse', synonyms: ['inculpate', 'indict', 'arraign', 'implicate', 'incriminate'], antonyms: ['exculpate', 'absolve', 'acquit', 'exonerate', 'amnesty', 'vindicate'] },
-            { word: 'Contemplate', synonyms: ['mull', 'brood', 'muse', 'cogitate', 'ruminate', 'perpend', 'pensive', 'chew over', 'chew the cud'], antonyms: [] },
-            { word: 'Reprimand', synonyms: ['chide', 'rebuke', 'chastise', 'admonish', 'upbraid', 'reprove', 'lambast'], antonyms: ['extol', 'eulogize', 'panegyrize', 'exalt', 'lionize'] },
-            { word: 'Abrogate', synonyms: ['rescind', 'annul', 'quash', 'countermand', 'repudiate', 'gainsay', 'abjure'], antonyms: [] },
-            { word: 'Vestige', synonyms: ['mark', 'detritus', 'remnants'], antonyms: [] },
-            { word: 'Abruptly', synonyms: ['impetuously', 'brusquely'], antonyms: ['gingerly'] },
-            { word: 'Rudimentary', synonyms: ['embryonic', 'inchoate', 'nascent', 'incipient', 'budding'], antonyms: ['intricate', 'convoluted'] },
-            { word: 'Piquant', synonyms: ['palatable', 'luscious', 'scrumptious', 'savoury'], antonyms: ['insipid'] },
-            { word: 'Ephemeral', synonyms: ['transient', 'transitory', 'evanescent', 'fleeting', 'fugacious'], antonyms: ['perpetual', 'perennial'] },
-            { word: 'Fidelity', synonyms: ['allegiance', 'fealty', 'constancy', 'obeisance', 'homage'], antonyms: ['treachery', 'inconstancy', 'perfidy', 'treason', 'sedition', 'renegade', 'quisling'] },
-            { word: 'Foreword', synonyms: ['overture'], antonyms: ['epilogue'] },
-            { word: 'Amiss', synonyms: ['awry'], antonyms: ['impeccable'] },
-            { word: 'Avaricious', synonyms: ['covetous', 'rapacious', 'ravenous', 'voracious', 'gluttonous', 'edacious', 'esurient', 'famished'], antonyms: ['satiable', 'contented', 'abstemious'] },
-            { word: 'Obliterate', synonyms: ['expunge', 'extirpate', 'ravage', 'raze', 'efface', 'root out'], antonyms: [] },
-            { word: 'Comeuppance', synonyms: ['reprisal', 'retort', 'retribution', 'vengeance', 'nemesis', 'castigation', 'reciprocate'], antonyms: ['amnesty', 'impunity'] },
-            { word: 'Disparate', synonyms: ['incongruous'], antonyms: ['tantamount'] },
-            { word: 'Persnickety', synonyms: ['finicky', 'dainty', 'fastidious', 'finical', 'faddish', 'squeamish', 'nicety'], antonyms: [] },
-            { word: 'Extraneous', synonyms: [], antonyms: ['germane'] },
-            { word: 'Comely', synonyms: ['appealing', 'pulchritudinous', 'enticing', 'allure', 'lure'], antonyms: ['hideous', 'repulsive', 'ghastly', 'frightful', 'vile'] },
-            { word: 'Antediluvian', synonyms: ['aboriginal', 'archaic', 'obsolete', 'hoary', 'pristine'], antonyms: [] },
-            { word: 'Peruse', synonyms: ['wade through', 'scrutinize', 'probe'], antonyms: ['condone'] },
-            { word: 'Maverick', synonyms: ['nonconformist', 'dissenter', 'iconoclast', 'deviant'], antonyms: ['parochial', 'insular', 'myopic', 'sectarian', 'provincial'] },
-            { word: 'Pithy', synonyms: ['succinct', 'compendious'], antonyms: ['prolix'] },
-            { word: 'Pester', synonyms: ['vex', 'heckle', 'nettle', 'beleaguer', 'persecute', 'goad', 'banter', 'miff', 'repartee'], antonyms: [] },
-            { word: 'Berserk', synonyms: ['chagrined', 'frantic', 'furore'], antonyms: [] },
-            { word: 'Enigma', synonyms: ['conundrum', 'quandary'], antonyms: [] },
-            { word: 'Dogma', synonyms: ['axiom', 'creed', 'precept', 'tenet', 'maxim', 'adage', 'statute', 'proverb', 'dictum', 'aphorism'], antonyms: ['heterodoxy', 'scepticism'] },
-            { word: 'Caveat', synonyms: ['proviso', 'omen', 'augury'], antonyms: [] },
-            { word: 'Emulate', synonyms: ['ape', 'impersonate', 'take after'], antonyms: [] },
-            { word: 'Pioneer', synonyms: ['settler', 'trailblazer'], antonyms: [] },
-            { word: 'Onslaught', synonyms: ['assailment', 'assail', 'set upon', 'clout', 'foray'], antonyms: [] },
-            { word: 'Mundane', synonyms: ['tedious', 'prosaic', 'humdrum', 'banal', 'hackneyed', 'platitude', 'quotidian', 'hoary', 'ennui', 'dreary', 'lackluster', 'vapid', 'trite'], antonyms: [] }
-        ];
+    <div id="results-screen" class="hidden">
+        <h1>Quiz Complete!</h1>
+        <h2 id="final-score"></h2>
+        <div id="review-container" class="review-list"></div>
+        <button class="btn-primary" onclick="location.reload()">Back to Menu</button>
+    </div>
+</div>
 
-        const simpleWords = ['apple', 'happy', 'sad', 'car', 'book', 'jump', 'fast', 'slow', 'big', 'small', 'tree', 'water', 'sky', 'house', 'dog', 'cat', 'walk', 'eat', 'sleep'];
+<script>
+    // --- SPACED REPETITION MEMORY ---
+    let userStats = JSON.parse(localStorage.getItem('vocabStats')) || {};
 
-        let allAdvancedWords = [];
-        vocabData.forEach(item => {
-            allAdvancedWords = allAdvancedWords.concat(item.synonyms).concat(item.antonyms);
-        });
+    function updateWordStat(clusterId, isCorrect) {
+        if (!userStats[clusterId]) userStats[clusterId] = 0;
+        if (isCorrect) userStats[clusterId] += 1;
+        else userStats[clusterId] -= 2;
+        localStorage.setItem('vocabStats', JSON.stringify(userStats));
+    }
 
-        let currentQuestions = [], currentIndex = 0, score = 0, wrongAnswers = [];
+    // --- FULL 99 WORD DATA ---
+    const vocabData = [
+        { word: 'Slipshod', synonyms: ['heedless', 'remiss', 'lax', 'impetuous'], antonyms: ['scrupulous', 'solicitous'] },
+        { word: 'Abstruse', synonyms: ['elusive', 'esoteric', 'recondite', 'implicit', 'cryptic', 'oracular', 'uncanny', 'incoherent', 'intangible', 'dicey'], antonyms: ['pellucid', 'perspicuous', 'conspicuous', 'explicit', 'limpid', 'apparent', 'coherent', 'tangible'] },
+        { word: 'Ameliorate', synonyms: ['amend', 'revamp', 'rectify', 'overhaul'], antonyms: ['aggravate', 'exacerbate'] },
+        { word: 'Exiguous', synonyms: ['dearth', 'scanty', 'sparse', 'paltry', 'deprived', 'trivial', 'meagre', 'skimpy'], antonyms: ['galore', 'plethora', 'surfeit', 'profuse', 'myriad', 'umpteen', 'opulent', 'verdant', 'sumptuous', 'copious', 'substantial'] },
+        { word: 'Novice', synonyms: ['dabbler', 'tyro', 'proselyte', 'maladroit', 'inept', 'inadept'], antonyms: ['savant', 'seasoned', 'acumen', 'maestro', 'aficionado', 'virtuoso', 'adroit', 'ept', 'adept', 'dexterous', 'doyen', 'perspicacious'] },
+        { word: 'Apogee', synonyms: ['zenith', 'apotheosis', 'acme', 'culmination', 'crest'], antonyms: ['nadir', 'plinth'] },
+        { word: 'Clandestine', synonyms: ['surreptitious', 'furtive', 'ulterior', 'veiled', 'devious', 'covert'], antonyms: ['forthright', 'upright', 'candid', 'overt', 'unveil'] },
+        { word: 'Voluble', synonyms: ['gabby', 'garrulous', 'verbose'], antonyms: ['reticent', 'taciturn', 'laconic', 'concise', 'terse', 'curt'] },
+        { word: 'Amass', synonyms: ['garner', 'assimilate', 'congregate'], antonyms: ['dissipate', 'disseminate', 'squander', 'fritter', 'misspend'] },
+        { word: 'Audacious', synonyms: ['valiant', 'gallant', 'dauntless', 'intrepid', 'temerity', 'gritty', 'fretless', 'doughty'], antonyms: ['mousy', 'craven', 'coy', 'recreant', 'skittish'] },
+        { word: 'Bliss', synonyms: ['glee', 'mirth', 'elation', 'rapture', 'ecstasy', 'euphoria', 'beatitude', 'exaltation'], antonyms: ['doleful', 'bleak', 'forlorn', 'morose', 'crestfallen', 'dolorous', 'melancholy', 'sombre', 'glum', 'sullen', 'rue', 'murky', 'weepy', 'plaintive'] },
+        { word: 'Assuage', synonyms: ['lull', 'alleviate', 'allay', 'conciliate', 'palliate', 'propitiate'], antonyms: ['incite', 'instigate', 'infuriate', 'foment', 'exasperate', 'goad', 'embroil', 'exhort'] },
+        { word: 'Turmoil', synonyms: ['agitation', 'tumultuous', 'mayhem', 'bedlam', 'pandemonium', 'shambles', 'perturbation'], antonyms: ['serenity'] },
+        { word: 'Plaudit', synonyms: ['acclamation', 'approbation', 'citation', 'encomium', 'eulogy', 'accolades', 'panegyrize'], antonyms: ['ignominy', 'censure', 'tirade', 'jeremiad', 'calumny', 'rant', 'pillory', 'opprobrium', 'obloquy', 'mortification', 'lambast', 'invective', 'libel', 'slander'] },
+        { word: 'Tenacious', synonyms: ['obstinate', 'obdurate', 'steadfast', 'dogged', 'dogmatic', 'resolute', 'intransigent', 'mulish', 'inexorable', 'wilful', 'refractory', 'wayward', 'ossified', 'recalcitrant', 'pervert', 'unyielding'], antonyms: ['acquiesce', 'docile', 'subservient', 'servile', 'pliable', 'supple', 'complaisant', 'amenable', 'capitulate'] },
+        { word: 'Perjure', synonyms: ['beguile', 'delude', 'hoodwink', 'swindle', 'take in', 'dupe', 'prevaricate', 'ruse', 'mendacious'], antonyms: ['assert'] },
+        { word: 'Testy', synonyms: ['petulant', 'contentious', 'captious', 'fractious', 'truculent'], antonyms: ['cordial', 'genial', 'affable', 'jovial'] },
+        { word: 'Mercurial', synonyms: ['capricious', 'erratic', 'fickle', 'flighty'], antonyms: [] },
+        { word: 'Outlandish', synonyms: ['eerie', 'aberrant', 'outre', 'queer', 'quaint', 'anomalous'], antonyms: [] },
+        { word: 'Nugatory', synonyms: ['futile', 'parched', 'desolate'], antonyms: ['prolific', 'arable'] },
+        { word: 'Augment', synonyms: ['aggrandize', 'expedite', 'parlay', 'soar', 'crescendo', 'burgeon', 'proliferate'], antonyms: ['abbreviate', 'dwindle', 'wane', 'recede', 'ebb'] },
+        { word: 'Erudite', synonyms: ['highbrow', 'cerebral'], antonyms: ['benighted'] },
+        { word: 'Beneficial', synonyms: ['salubrious', 'salutary', 'propitious', 'innocuous', 'expedient', 'auspicious'], antonyms: ['perilous', 'parlous', 'precarious', 'inimical', 'deleterious'] },
+        { word: 'Obstreperous', synonyms: ['vociferous', 'clamorous', 'unruly', 'raucous'], antonyms: ['reposeful'] },
+        { word: 'Embargo', synonyms: ['impediment', 'deterrents', 'proscription', 'stumbling', 'interdict', 'occlude', 'stymie', 'encumbrance', 'thwart'], antonyms: [] },
+        { word: 'Bumptious', synonyms: ['haughty', 'fustian', 'supercilious', 'vanity', 'imperious', 'cavalier', 'snobbish', 'chesty', 'patronizing'], antonyms: ['benign'] },
+        { word: 'Bumpkin', synonyms: ['yokel', 'arcade', 'boorish', 'clumsy', 'bucolic', 'loutish', 'uncouth'], antonyms: ['debonair', 'genteel'] },
+        { word: 'Scrimmage', synonyms: ['fracas', 'squabble', 'skirmish', 'strife', 'scuffles', 'vendetta', 'discord'], antonyms: ['concord', 'accord', 'truce', 'congruity'] },
+        { word: 'Virile', synonyms: ['burly', 'plump', 'portly', 'rotund', 'pudgy'], antonyms: ['frail', 'infirm', 'decrepit', 'enervated', 'doddering', 'dilapidated', 'gaunt', 'indisposed', 'bony', 'flimsy', 'flaccid'] },
+        { word: 'Aftermath', synonyms: ['repercussions', 'upshot', 'fallout', 'ramification', 'reverberation', 'corollary'], antonyms: ['advent', 'inception'] },
+        { word: 'Baffled', synonyms: ['confounded', 'muddled', 'perplexed', 'befuddled', 'nonplussed', 'bewildered', 'flustered', 'flummoxed', 'dazed', 'fazed'], antonyms: ['explicate'] },
+        { word: 'Imperative', synonyms: ['requisite', 'exigent', 'incumbent'], antonyms: ['discretionary'] },
+        { word: 'Brace', synonyms: ['bolster', 'buttress', 'beef up', 'prop up', 'consolidate', 'embolden'], antonyms: ['debilitate', 'enervate', 'jade'] },
+        { word: 'Seize', synonyms: ['clasp', 'usurp', 'impound', 'commandeer', 'expropriate', 'sequestrate'], antonyms: ['extricate'] },
+        { word: 'Innate', synonyms: ['ingrained', 'inveterate', 'intrinsic', 'immanent', 'congenital'], antonyms: ['extrinsic'] },
+        { word: 'Onerous', synonyms: ['toilsome', 'cumbersome', 'arduous'], antonyms: ['facile'] },
+        { word: 'Confute', synonyms: ['abjure', 'refute', 'repudiate', 'rebut', 'rebuff', 'gainsay', 'controvert', 'contravene'], antonyms: ['ratify', 'concede', 'espouse', 'corroborate', 'assent'] },
+        { word: 'Beneficent', synonyms: ['munificent', 'magnanimous', 'altruistic', 'bounteous', 'divvy', 'largesse', 'samaritan'], antonyms: ['maleficent', 'misanthropic'] },
+        { word: 'Divvy', synonyms: ['apportion'], antonyms: [] },
+        { word: 'Dapper', synonyms: ['spruce', 'tidy', 'snappy', 'sassy', 'nifty', 'prim', 'kempt', 'immaculate'], antonyms: ['scrubby', 'scruffy', 'shabby', 'slovenly', 'slouchy'] },
+        { word: 'Adversity', synonyms: ['tribulations', 'plight', 'distress', 'predicament', 'affliction', 'cataclysm', 'scourge', 'abject'], antonyms: [] },
+        { word: 'Abomination', synonyms: ['odium', 'pique', 'aversion', 'loathsome', 'detestation', 'repugnance', 'animosity', 'abhorrence', 'disdain', 'anathema', 'rancor', 'aspersion'], antonyms: ['propensity', 'proclivity', 'penchant', 'predilection', 'endearment', 'predisposition'] },
+        { word: 'Indigent', synonyms: ['impoverished', 'penurious', 'impecunious', 'pauper', 'destitute', 'hard up', 'mendicant'], antonyms: ['opulent', 'affluent'] },
+        { word: 'Entreat', synonyms: ['implore', 'beseech', 'importune', 'supplicate', 'solicit', 'adjure', 'scrounge'], antonyms: ['coerce', 'impel', 'remonstrate'] },
+        { word: 'Puritanical', synonyms: ['scrupulous', 'conscientious', 'prudish', 'priggish', 'aboveboard', 'virtuous', 'pristine'], antonyms: ['vicious', 'reprobate'] },
+        { word: 'Rancid', synonyms: ['stale', 'putrid', 'fetid', 'musty'], antonyms: [] },
+        { word: 'Authenticate', synonyms: ['factual', 'veritable'], antonyms: ['fictitious', 'factitious', 'specious', 'ersatz', 'apocryphal', 'bogus', 'fallacy', 'spurious', 'phoney', 'sophistry', 'sham', 'chicanery'] },
+        { word: 'Desultory', synonyms: ['haphazard', 'perfunctory', 'cursory', 'unpremeditated'], antonyms: [] },
+        { word: 'Affectation', synonyms: ['sophistry', 'feign', 'ostentation', 'swanky', 'sham', 'pomp', 'pompous'], antonyms: ['veracity'] },
+        { word: 'Adulation', synonyms: ['obsequiousness', 'cajolery', 'coax', 'sycophancy', 'fawning', 'blandishment', 'wheedle', 'toady', 'inveiglement', 'servility', 'unctuous', 'ingratiating', 'blandiloquent'], antonyms: ['obloquy', 'reproach', 'aspersion', 'vituperation'] },
+        { word: 'Imbecile', synonyms: ['asinine', 'fatuous', 'dunce', 'nincompoop', 'simpleton', 'puerile', 'ignoramus', 'vacuous', 'doltish'], antonyms: ['sapient', 'astute', 'judicious'] },
+        { word: 'Exigency', synonyms: ['contingency'], antonyms: [] },
+        { word: 'Bequeath', synonyms: ['abdicate', 'renounce', 'denounce', 'relinquish', 'shun', 'abjure', 'acquit', 'abnegate'], antonyms: ['entail'] },
+        { word: 'Agile', synonyms: ['brisk', 'alacritous', 'prompt', 'spry', 'expeditiously'], antonyms: ['languid', 'lax', 'indolent', 'torpid'] },
+        { word: 'Quixotic', synonyms: ['chimerical', 'fictitious', 'factitious', 'intangible'], antonyms: ['pragmatic', 'factual', 'empirical', 'plausible', 'tenable', 'tangible', 'viable', 'probable'] },
+        { word: 'Imprudent', synonyms: [], antonyms: ['clairvoyance', 'discerning', 'foresighted'] },
+        { word: 'Impudent', synonyms: ['insolent', 'impertinent', 'cheeky', 'saucy', 'curt', 'abrupt', 'brusque', 'brash'], antonyms: ['benign'] },
+        { word: 'Licentious', synonyms: ['lascivious', 'libertine', 'libidinous', 'wanton', 'profligate', 'dissolute', 'debauched', 'ribald', 'promiscuous', 'reprobate', 'salacious', 'flagrant', 'profane', 'egregious'], antonyms: ['chaste', 'scrupulous', 'pristine'] },
+        { word: 'Aplomb', synonyms: ['equanimity', 'poise', 'phlegmatic', 'sangfroid', 'sanguinity'], antonyms: ['angst', 'consternation', 'overstrung', 'dismay', 'distraught', 'apprehension', 'trepidation', 'dread'] },
+        { word: 'Colossal', synonyms: ['prodigious', 'lofty'], antonyms: ['pygmy', 'wee', 'diminutive', 'petite', 'infinitesimal'] },
+        { word: 'Nonchalant', synonyms: ['apathetic', 'stolid', 'impassive', 'perfunctory', 'insouciant', 'impervious'], antonyms: [] },
+        { word: 'Captivity', synonyms: ['incarceration', 'impoundment', 'internment', 'serfdom'], antonyms: [] },
+        { word: 'Wily', synonyms: ['insidious', 'sly', 'intriguing', 'shrewd', 'knavish'], antonyms: ['bovine'] },
+        { word: 'Advent', synonyms: ['inception', 'genesis', 'commencement', 'budding'], antonyms: ['exodus'] },
+        { word: 'Brevity', synonyms: ['abbreviation', 'pithy', 'succinctness', 'compendium'], antonyms: ['prolix'] },
+        { word: 'Inclement', synonyms: ['stern', 'stringent', 'grim', 'dire', 'austere', 'ascetic'], antonyms: ['frivolous', 'clement'] },
+        { word: 'Immaculate', synonyms: ['prim', 'pristine', 'unsoiled', 'tidy', 'spick and span'], antonyms: ['murky', 'grubby', 'stale', 'sullied', 'besmirched', 'defiled', 'blemished', 'tainted'] },
+        { word: 'Accuse', synonyms: ['inculpate', 'indict', 'arraign', 'implicate', 'incriminate'], antonyms: ['exculpate', 'absolve', 'acquit', 'exonerate', 'amnesty', 'vindicate'] },
+        { word: 'Contemplate', synonyms: ['mull', 'brood', 'muse', 'cogitate', 'ruminate', 'perpend', 'pensive', 'chew over', 'chew the cud'], antonyms: [] },
+        { word: 'Reprimand', synonyms: ['chide', 'rebuke', 'chastise', 'admonish', 'upbraid', 'reprove', 'lambast'], antonyms: ['extol', 'eulogize', 'panegyrize', 'exalt', 'lionize'] },
+        { word: 'Abrogate', synonyms: ['rescind', 'annul', 'quash', 'countermand', 'repudiate', 'gainsay', 'abjure'], antonyms: [] },
+        { word: 'Vestige', synonyms: ['mark', 'detritus', 'remnants'], antonyms: [] },
+        { word: 'Abruptly', synonyms: ['impetuously', 'brusquely'], antonyms: ['gingerly'] },
+        { word: 'Rudimentary', synonyms: ['embryonic', 'inchoate', 'nascent', 'incipient', 'budding'], antonyms: ['intricate', 'convoluted'] },
+        { word: 'Piquant', synonyms: ['palatable', 'luscious', 'scrumptious', 'savoury'], antonyms: ['insipid'] },
+        { word: 'Ephemeral', synonyms: ['transient', 'transitory', 'evanescent', 'fleeting', 'fugacious'], antonyms: ['perpetual', 'perennial'] },
+        { word: 'Fidelity', synonyms: ['allegiance', 'fealty', 'constancy', 'obeisance', 'homage'], antonyms: ['treachery', 'inconstancy', 'perfidy', 'treason', 'sedition', 'renegade', 'quisling'] },
+        { word: 'Foreword', synonyms: ['overture'], antonyms: ['epilogue'] },
+        { word: 'Amiss', synonyms: ['awry'], antonyms: ['impeccable'] },
+        { word: 'Avaricious', synonyms: ['covetous', 'rapacious', 'ravenous', 'voracious', 'gluttonous', 'edacious', 'esurient', 'famished'], antonyms: ['satiable', 'contented', 'abstemious'] },
+        { word: 'Obliterate', synonyms: ['expunge', 'extirpate', 'ravage', 'raze', 'efface', 'root out'], antonyms: [] },
+        { word: 'Comeuppance', synonyms: ['reprisal', 'retort', 'retribution', 'vengeance', 'nemesis', 'castigation', 'reciprocate'], antonyms: ['amnesty', 'impunity'] },
+        { word: 'Disparate', synonyms: ['incongruous'], antonyms: ['tantamount'] },
+        { word: 'Persnickety', synonyms: ['finicky', 'dainty', 'fastidious', 'finical', 'faddish', 'squeamish', 'nicety'], antonyms: [] },
+        { word: 'Extraneous', synonyms: [], antonyms: ['germane'] },
+        { word: 'Comely', synonyms: ['appealing', 'pulchritudinous', 'enticing', 'allure', 'lure'], antonyms: ['hideous', 'repulsive', 'ghastly', 'frightful', 'vile'] },
+        { word: 'Antediluvian', synonyms: ['aboriginal', 'archaic', 'obsolete', 'hoary', 'pristine'], antonyms: [] },
+        { word: 'Peruse', synonyms: ['wade through', 'scrutinize', 'probe'], antonyms: ['condone'] },
+        { word: 'Maverick', synonyms: ['nonconformist', 'dissenter', 'iconoclast', 'deviant'], antonyms: ['parochial', 'insular', 'myopic', 'sectarian', 'provincial'] },
+        { word: 'Pithy', synonyms: ['succinct', 'compendious'], antonyms: ['prolix'] },
+        { word: 'Pester', synonyms: ['vex', 'heckle', 'nettle', 'beleaguer', 'persecute', 'goad', 'banter', 'miff', 'repartee'], antonyms: [] },
+        { word: 'Berserk', synonyms: ['chagrined', 'frantic', 'furore'], antonyms: [] },
+        { word: 'Enigma', synonyms: ['conundrum', 'quandary'], antonyms: [] },
+        { word: 'Dogma', synonyms: ['axiom', 'creed', 'precept', 'tenet', 'maxim', 'adage', 'statute', 'proverb', 'dictum', 'aphorism'], antonyms: ['heterodoxy', 'scepticism'] },
+        { word: 'Caveat', synonyms: ['proviso', 'omen', 'augury'], antonyms: [] },
+        { word: 'Emulate', synonyms: ['ape', 'impersonate', 'take after'], antonyms: [] },
+        { word: 'Pioneer', synonyms: ['settler', 'trailblazer'], antonyms: [] },
+        { word: 'Onslaught', synonyms: ['assailment', 'assail', 'set upon', 'clout', 'foray'], antonyms: [] },
+        { word: 'Mundane', synonyms: ['tedious', 'prosaic', 'humdrum', 'banal', 'hackneyed', 'platitude', 'quotidian', 'hoary', 'ennui', 'dreary', 'lackluster', 'vapid', 'trite'], antonyms: [] }
+    ];
 
-        // Helper: Find synonyms for hints
-        // Helper: Find synonyms for hints
-        function getSynonymsForWord(searchWord) {
-            if (simpleWords.includes(searchWord)) return "Basic vocabulary word.";
+    const simpleWords = ['apple', 'happy', 'sad', 'car', 'book', 'jump', 'fast', 'slow', 'big', 'small', 'tree', 'water', 'sky', 'house', 'dog', 'cat', 'walk', 'eat', 'sleep'];
 
-            for (const item of vocabData) {
-                // If it is the root word or a synonym
-                if (item.word === searchWord || item.synonyms.includes(searchWord)) {
-                    let related = [item.word, ...item.synonyms].filter(w => w !== searchWord);
-                    return `<strong>Related:</strong> ${related.slice(0, 4).join(', ')}`;
-                }
-                // IF IT IS AN ANTONYM (The Fix)
-                if (item.antonyms.includes(searchWord)) {
-                    let related = item.antonyms.filter(w => w !== searchWord);
-                    return `<strong>Opposite of ${item.word}. Related:</strong> ${related.slice(0, 3).join(', ')}`;
-                }
+    let currentQuestions = [], currentIndex = 0, score = 0, wrongAnswers = [];
+
+    function getSynonymsForWord(searchWord) {
+        if (simpleWords.includes(searchWord)) return "Basic distractor word.";
+        
+        for (const item of vocabData) {
+            let group1 = [item.word, ...item.synonyms];
+            if (group1.includes(searchWord)) {
+                let related = group1.filter(w => w !== searchWord);
+                if (related.length === 0) return `<strong>Main Word:</strong> ${item.word}`;
+                return `<strong>Related:</strong> ${related.slice(0, 4).join(', ')}`;
             }
-            return "No definition found.";
+            if (item.antonyms.includes(searchWord)) {
+                let related = item.antonyms.filter(w => w !== searchWord);
+                return `<strong>Opposite of ${item.word}. Related:</strong> ${related.slice(0, 3).join(', ')}`;
+            }
         }
+        return "No definition found.";
+    }
 
-        function shuffleArray(array) { return array.sort(() => Math.random() - 0.5); }
-        function getRandomItem(array) { return array[Math.floor(Math.random() * array.length)]; }
+    function shuffleArray(array) { return array.sort(() => Math.random() - 0.5); }
+    function getRandomItem(array) { return array[Math.floor(Math.random() * array.length)]; }
 
-        function startQuiz() {
+    function startQuiz() {
         const mode = document.getElementById('mode-select').value;
         const diff = document.getElementById('diff-select').value;
-        
-        // Read the new Question Count input
         const countValue = document.getElementById('count-select').value;
-        const questionCount = countValue === 'all' ? vocabData.length : parseInt(countValue);
         
         let start = parseInt(document.getElementById('start-range').value) || 1;
         let end = parseInt(document.getElementById('end-range').value) || vocabData.length;
@@ -432,145 +314,200 @@
         }
 
         score = 0; currentIndex = 0; wrongAnswers = [];
-        // Pass the new questionCount parameter into the generator
-        currentQuestions = generateQuestions(mode, diff, start, end, questionCount);
+        
+        currentQuestions = generateQuestions(mode, diff, start, end, countValue);
+
+        if (currentQuestions.length === 0) {
+            alert("No valid words found for this mode in that range!");
+            return;
+        }
 
         document.getElementById('menu-screen').classList.add('hidden');
         document.getElementById('quiz-screen').classList.remove('hidden');
         loadQuestion();
     }
 
-    // Notice we added questionCount to the function parameters here
-    function generateQuestions(mode, diff, start, end, questionCount) {
+    function generateQuestions(mode, diff, start, end, countValue) {
         let questions = [];
-
         let rangeData = vocabData.slice(start - 1, end);
 
         let usableData = rangeData.filter(item => {
-            if (mode === 'synonym') return item.synonyms.length > 0;
-            if (mode === 'antonym') return item.antonyms.length > 0;
-            return item.synonyms.length > 0 || item.antonyms.length > 0; 
+            let group1 = [item.word, ...item.synonyms];
+            let group2 = item.antonyms;
+            if (mode === 'synonym') return group1.length > 1 || group2.length > 1; 
+            if (mode === 'antonym') return group1.length > 0 && group2.length > 0; 
+            return (group1.length > 1 || group2.length > 1) || (group1.length > 0 && group2.length > 0);
         });
 
-        shuffleArray([...usableData]).forEach(item => {
+        if (usableData.length === 0) return [];
+
+        // --- NEW FIX: DYNAMIC "ALL" MATH AND RESTRICTED DISTRACTORS ---
+        let rangeAdvancedWords = [];
+        let totalWordsInRange = 0;
+        
+        usableData.forEach(item => {
+            rangeAdvancedWords.push(item.word);
+            rangeAdvancedWords = rangeAdvancedWords.concat(item.synonyms).concat(item.antonyms);
+            totalWordsInRange += 1 + item.synonyms.length + item.antonyms.length; // Count every unique word
+        });
+
+        // If 'all', calculate perfect mathematical coverage: Total Words / 5 Words per Question
+        let finalQuestionCount = countValue === 'all' ? Math.ceil(totalWordsInRange / 5) : parseInt(countValue);
+        let wordPool = [];
+
+        for (let i = 0; i < finalQuestionCount; i++) {
+            if (wordPool.length === 0) {
+                // Spaced Repetition logic remains fully intact here!
+                wordPool = [...usableData].sort((a, b) => {
+                    let scoreA = userStats[a.word] || 0;
+                    let scoreB = userStats[b.word] || 0;
+                    if (scoreA === scoreB) return Math.random() - 0.5;
+                    return scoreB - scoreA; 
+                });
+            }
+
+            let item = wordPool.pop();
+            let group1 = [item.word, ...item.synonyms];
+            let group2 = [...item.antonyms];
+
             let askForSynonym;
             if (mode === 'synonym') askForSynonym = true;
             else if (mode === 'antonym') askForSynonym = false;
             else {
-                if (item.synonyms.length === 0) askForSynonym = false;
-                else if (item.antonyms.length === 0) askForSynonym = true;
+                let canSyn = group1.length > 1 || group2.length > 1;
+                let canAnt = group1.length > 0 && group2.length > 0;
+                if (!canSyn) askForSynonym = false;
+                else if (!canAnt) askForSynonym = true;
                 else askForSynonym = Math.random() > 0.5;
             }
 
-            const correctAnswer = askForSynonym ? getRandomItem(item.synonyms) : getRandomItem(item.antonyms);
-            let options = [correctAnswer];
+            let targetWord, correctAnswer;
 
-            let validAdvancedWords = allAdvancedWords.filter(w => 
-                !item.synonyms.includes(w) && !item.antonyms.includes(w) && w !== item.word
-            );
+            if (askForSynonym) {
+                let validGroups = [];
+                if (group1.length > 1) validGroups.push(group1);
+                if (group2.length > 1) validGroups.push(group2);
+                let selectedGroup = getRandomItem(validGroups);
+                let shuffledGroup = shuffleArray([...selectedGroup]);
+                targetWord = shuffledGroup[0]; 
+                correctAnswer = shuffledGroup[1]; 
+            } else {
+                if (Math.random() > 0.5) {
+                    targetWord = getRandomItem(group1);
+                    correctAnswer = getRandomItem(group2);
+                } else {
+                    targetWord = getRandomItem(group2);
+                    correctAnswer = getRandomItem(group1);
+                }
+            }
+
+            let options = [correctAnswer];
+            
+            // Restrict wrong answers to ONLY words from your selected range
+            let validAdvancedWords = rangeAdvancedWords.filter(w => !group1.includes(w) && !group2.includes(w));
 
             while (options.length < 4) {
                 let distractor = diff === 'easy' ? getRandomItem(simpleWords) : getRandomItem(validAdvancedWords);
-                
                 if (diff === 'hard' && options.length === 1) {
-                    if (askForSynonym && item.antonyms.length > 0) distractor = getRandomItem(item.antonyms);
-                    else if (!askForSynonym && item.synonyms.length > 0) distractor = getRandomItem(item.synonyms);
+                    if (askForSynonym) {
+                        distractor = group1.includes(targetWord) && group2.length > 0 ? getRandomItem(group2) : 
+                                     group2.includes(targetWord) && group1.length > 0 ? getRandomItem(group1) : distractor;
+                    } else {
+                        let sameGroup = group1.includes(targetWord) ? group1 : group2;
+                        let trickyOpts = sameGroup.filter(w => w !== targetWord);
+                        if (trickyOpts.length > 0) distractor = getRandomItem(trickyOpts);
+                    }
                 }
-                
                 if (!options.includes(distractor) && distractor !== undefined) options.push(distractor);
             }
 
             questions.push({
-                word: item.word, 
+                word: targetWord,         
+                clusterId: item.word,     
                 type: askForSynonym ? "SYNONYM" : "ANTONYM",
                 correctAnswer: correctAnswer, 
                 options: shuffleArray(options)
             });
-        });
-
-        // Slice the array using the exact number the user selected
-        return questions.slice(0, questionCount); 
+        }
+        return questions; 
     }
 
-        function loadQuestion() {
-            document.getElementById('next-btn-container').classList.add('hidden');
-            const q = currentQuestions[currentIndex];
+    function loadQuestion() {
+        document.getElementById('next-btn-container').classList.add('hidden');
+        const q = currentQuestions[currentIndex];
+        
+        document.getElementById('progress-text').textContent = `Question ${currentIndex + 1} of ${currentQuestions.length}`;
+        document.getElementById('score-text').textContent = `Score: ${score}`;
+        document.getElementById('word-display').textContent = q.word;
+        document.getElementById('prompt-text').textContent = `Find a ${q.type} for:`;
+        
+        const container = document.getElementById('options-container');
+        container.innerHTML = '';
 
-            document.getElementById('progress-text').textContent = `Q ${currentIndex + 1}/${currentQuestions.length}`;
+        q.options.forEach(opt => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'option-wrapper';
+
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = opt;
+
+            const hint = document.createElement('div');
+            hint.className = 'hint-text hidden';
+            hint.innerHTML = getSynonymsForWord(opt);
+
+            btn.onclick = () => handleAnswer(btn, opt, q.correctAnswer, q);
+
+            wrapper.appendChild(btn);
+            wrapper.appendChild(hint);
+            container.appendChild(wrapper);
+        });
+    }
+
+    function handleAnswer(btn, selected, correct, q) {
+        document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+        if (selected === correct) {
+            btn.classList.add('correct');
+            score++;
             document.getElementById('score-text').textContent = `Score: ${score}`;
-            document.getElementById('word-display').textContent = q.word;
-            document.getElementById('prompt-text').textContent = `Find a ${q.type} for:`;
-
-            const container = document.getElementById('options-container');
-            container.innerHTML = '';
-
-            q.options.forEach(opt => {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'option-wrapper';
-
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.textContent = opt;
-
-                const hint = document.createElement('div');
-                hint.className = 'hint-text hidden';
-                hint.innerHTML = getSynonymsForWord(opt);
-
-                btn.onclick = () => handleAnswer(btn, opt, q.correctAnswer, q);
-
-                wrapper.appendChild(btn);
-                wrapper.appendChild(hint);
-                container.appendChild(wrapper);
+            updateWordStat(q.clusterId, true);
+            setTimeout(advanceQuiz, 1000); 
+        } else {
+            btn.classList.add('wrong');
+            wrongAnswers.push({ word: q.word, type: q.type, correct: correct, guessed: selected });
+            updateWordStat(q.clusterId, false);
+            
+            document.querySelectorAll('.option-btn').forEach(b => {
+                if (b.textContent === correct) b.classList.add('correct');
+                b.nextElementSibling.classList.remove('hidden'); 
             });
+            document.getElementById('next-btn-container').classList.remove('hidden');
         }
+    }
 
-        function handleAnswer(btn, selected, correct, q) {
-            document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+    function advanceQuiz() {
+        currentIndex++;
+        currentIndex < currentQuestions.length ? loadQuestion() : showResults();
+    }
 
-            if (selected === correct) {
-                btn.classList.add('correct');
-                score++;
-                document.getElementById('score-text').textContent = `Score: ${score}`;
-                setTimeout(advanceQuiz, 1200); // Auto-advance if correct
-            } else {
-                btn.classList.add('wrong');
-                wrongAnswers.push({ word: q.word, type: q.type, correct: correct, guessed: selected });
-
-                // Show hints and correct answer
-                document.querySelectorAll('.option-btn').forEach(b => {
-                    if (b.textContent === correct) b.classList.add('correct');
-                    b.nextElementSibling.classList.remove('hidden'); // Reveal hint
-                });
-
-                // Show the "Next Question" button so user can read at their own pace
-                document.getElementById('next-btn-container').classList.remove('hidden');
-            }
-        }
-
-        function advanceQuiz() {
-            currentIndex++;
-            currentIndex < currentQuestions.length ? loadQuestion() : showResults();
-        }
-
-        function showResults() {
-            document.getElementById('quiz-screen').classList.add('hidden');
-            document.getElementById('results-screen').classList.remove('hidden');
-            document.getElementById('final-score').textContent = `Score: ${score} / ${currentQuestions.length}`;
-
-            const rc = document.getElementById('review-container');
-            if (wrongAnswers.length === 0) {
-                rc.innerHTML = '<p style="text-align:center; color: var(--correct); font-weight:bold;">Perfect score!</p>';
-            } else {
-                rc.innerHTML = wrongAnswers.map(item => `
+    function showResults() {
+        document.getElementById('quiz-screen').classList.add('hidden');
+        document.getElementById('results-screen').classList.remove('hidden');
+        document.getElementById('final-score').textContent = `Score: ${score} / ${currentQuestions.length}`;
+        
+        const rc = document.getElementById('review-container');
+        if (wrongAnswers.length === 0) {
+            rc.innerHTML = '<p style="text-align:center; color: var(--correct); font-weight:bold; font-size: 18px;">Flawless! Incredible job.</p>';
+        } else {
+            rc.innerHTML = wrongAnswers.map(item => `
                 <div class="review-item">
                     <b>${item.word}</b>
-                    <div class="review-detail">Looked for <b>${item.type.toLowerCase()}</b>.<br>Correct: <b>${item.correct}</b> (You guessed: ${item.guessed})</div>
+                    <div class="review-detail">You needed a <b>${item.type.toLowerCase()}</b>.<br>Correct answer: <b>${item.correct}</b> (You guessed: ${item.guessed})</div>
                 </div>
             `).join('');
-            }
         }
-    </script>
-
+    }
+</script>
 </body>
-
 </html>
